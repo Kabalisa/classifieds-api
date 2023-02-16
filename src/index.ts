@@ -1,8 +1,23 @@
+import mongoose from "mongoose";
+
 import { app } from "./app";
 
 const start = async () => {
-  app.listen(3000, () => {
-    console.log("listening on port 3000....");
+  if (!process.env.MONGO_URI) {
+    throw new Error("MONGO_URI must be defined");
+  }
+
+  try {
+    mongoose.set("strictQuery", false);
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("connected to mongodb");
+  } catch (error) {
+    console.error(error);
+  }
+
+  const PORT = process.env.PORT;
+  app.listen(PORT, () => {
+    console.log(`listening on port ${PORT}....`);
   });
 };
 
