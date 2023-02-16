@@ -17,6 +17,7 @@ interface ProductAttrs {
   image: string;
   manufactureDate: string;
   category: Category;
+  userId: string;
 }
 
 export interface ProductDoc extends mongoose.Document {
@@ -26,6 +27,7 @@ export interface ProductDoc extends mongoose.Document {
   image: string;
   manufactureDate: string;
   category: Category;
+  userId: string;
 }
 
 interface ProductModel extends mongoose.Model<ProductDoc> {
@@ -58,6 +60,10 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
       enum: Object.values(Category),
+    },
+    userId: {
+      type: String,
+      required: true,
     },
   },
   {
