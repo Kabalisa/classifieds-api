@@ -49,6 +49,10 @@ class AuthController {
 
     return res.send({ seller, jwt });
   }
+
+  static async currentUser(req: Request, res: Response) {
+    return res.send({ currentUser: req.currentUser || null });
+  }
 }
 
 export default AuthController;
