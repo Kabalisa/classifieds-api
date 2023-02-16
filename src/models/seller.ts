@@ -3,11 +3,13 @@ import mongoose from "mongoose";
 import { Password } from "../services/password";
 
 interface SellerAttrs {
+  name: string;
   phoneNumber: number;
   password: string;
 }
 
 export interface SellerDoc extends mongoose.Document {
+  name: string;
   phoneNumber: number;
   password: string;
 }
@@ -18,6 +20,10 @@ interface SellerModel extends mongoose.Model<SellerDoc> {
 
 const sellerSchema = new mongoose.Schema(
   {
+    name: {
+      type: String,
+      required: true,
+    },
     phoneNumber: {
       type: Number,
       required: true,
